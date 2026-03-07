@@ -72,11 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
 
             try {
-                const response = await fetch('haavenmotors-production.up.railway.app/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
-                });
+               // Change this line:
+const response = await fetch('https://haavenmotors-production.up.railway.app/api/chat', { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text })
+});
                 const data = await response.json();
                 appendMessage(data.reply, 'bot');
             } catch (error) {
@@ -105,11 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('haavenmotors-production.up.railway.app', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
+               // Change this line:
+const response = await fetch('https://haavenmotors-production.up.railway.app/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+});
                 const data = await response.json();
                 
                 if (data.success) {

@@ -44,8 +44,10 @@ app.post('/api/contact', (req, res) => {
 });
 
 // 4. Automated Chatbot Endpoint
-app.post('/api/chat', (req, res) => {
+// --- CHATBOT ENDPOINT ---
+app.post('/api/chat', (req, res) => { // <--- Must be /api/chat
     const userMessage = req.body.message.toLowerCase();
+    
     let botReply = "I'm the Heaven Motors assistant. Ask me about our inventory or financing.";
 
     if (userMessage.includes('finance')) {
@@ -54,9 +56,7 @@ app.post('/api/chat', (req, res) => {
         botReply = "Hello! Welcome to Heaven Motors. Which car can I show you today?";
     }
 
-    setTimeout(() => {
-        res.json({ reply: botReply });
-    }, 500);
+    res.json({ reply: botReply });
 });
 
 // 5. Start Server
