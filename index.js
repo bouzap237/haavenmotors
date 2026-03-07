@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
 
             try {
-                const response = await fetch('haavenmotors-production.up.railway.app', {
+                const response = await fetch('haavenmotors-production.up.railway.app/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text })

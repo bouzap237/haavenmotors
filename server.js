@@ -1,26 +1,28 @@
-require('dotenv').config(); // 1. Add this at the very top
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = haavenmotors-production.up.railway.app;
+
+// 1. Dynamic Port for Railway
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('./')); 
 
-// 1. Setup the Email Transporter (Only one needed)
+// 2. Setup the Email Transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-       user: process.env.GMAIL_USER, // 2. Use the variable name
-        pass: process.env.GMAIL_PASS  // 3. Use the variable name
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS 
     }
 });
 
-// 2. Contact Form Endpoint
+// 3. Contact Form Endpoint
 app.post('/api/contact', (req, res) => {
     const { name, email, phone, message } = req.body;
 
@@ -41,10 +43,9 @@ app.post('/api/contact', (req, res) => {
     });
 });
 
-// 3. Automated Chatbot Endpoint
+// 4. Automated Chatbot Endpoint
 app.post('/api/chat', (req, res) => {
     const userMessage = req.body.message.toLowerCase();
-    
     let botReply = "I'm the Heaven Motors assistant. Ask me about our inventory or financing.";
 
     if (userMessage.includes('finance')) {
@@ -58,6 +59,7 @@ app.post('/api/chat', (req, res) => {
     }, 500);
 });
 
-app.listen(PORT, () => {
-    console.log(`🚀 Heaven Motors Backend running at http://localhost:${PORT}`);
+// 5. Start Server
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Heaven Motors Backend live on port ${PORT}`);
 });
