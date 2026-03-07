@@ -1,3 +1,4 @@
+require('dotenv').config(); // 1. Add this at the very top
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -14,8 +15,8 @@ app.use(express.static('./'));
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'bouzapsteve@gmail.com',      // Your Gmail address
-        pass: 'azcg wfmn lull yjuh'         // Your 16-character App Password
+       user: process.env.GMAIL_USER, // 2. Use the variable name
+        pass: process.env.GMAIL_PASS  // 3. Use the variable name
     }
 });
 
