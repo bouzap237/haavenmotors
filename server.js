@@ -13,24 +13,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('./')); 
 
-// 1. Add this at the VERY TOP of your server.js (under the requires)
-const dns = require('dns');
-dns.setDefaultResultOrder('ipv4first');
-
-// 2. Update your Transporter to use the IP address directly or a forced host
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', // Using the hostname
+    host: 'smtp.gmail.com',
     port: 465,
-    secure: true, 
+    secure: true, // true for 465, false for other ports
     auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASS
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
-    tls: {
-        rejectUnauthorized: false
     }
 });
 
