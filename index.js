@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                // Change this line:
-const response = await fetch('haavenmotors.railway.internal/api/chat', { 
+const response = await fetch('haavenmotors-production.up.railway.app/api/chat', { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: text })
@@ -107,7 +107,7 @@ const response = await fetch('haavenmotors.railway.internal/api/chat', {
 
             try {
               
-const response = await fetch('haavenmotors.railway.internal/api/contact', {
+const response = await fetch('haavenmotors-production.up.railway.app/api/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData)
