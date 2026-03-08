@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
 
             try {
-               // Change this line:
-const response = await fetch('https://haavenmotors-production.up.railway.app/api/chat', { 
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: text })
-});
+                // UPDATED: Now pointing to Render
+                const response = await fetch('https://haavenmotors.onrender.com/api/chat', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
                 const data = await response.json();
                 appendMessage(data.reply, 'bot');
             } catch (error) {
@@ -106,12 +106,12 @@ const response = await fetch('https://haavenmotors-production.up.railway.app/api
             };
 
             try {
-              
-const response = await fetch('https://haavenmotors-production.up.railway.app/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-});
+                // UPDATED: Now pointing to Render
+                const response = await fetch('https://haavenmotors.onrender.com/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
                 const data = await response.json();
                 
                 if (data.success) {
@@ -119,7 +119,7 @@ const response = await fetch('https://haavenmotors-production.up.railway.app/api
                     contactForm.reset();
                 }
             } catch (error) {
-                alert("Error sending message. Is your server running on port 3001?");
+                alert("Error sending message. Please check your connection.");
             }
         });
     }
