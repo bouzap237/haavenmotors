@@ -16,9 +16,15 @@ app.use(express.static('./'));
 // 2. Setup the Email Transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // Use SSL
     auth: {
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS 
+        pass: process.env.GMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false // This helps bypass some cloud network restrictions
     }
 });
 
