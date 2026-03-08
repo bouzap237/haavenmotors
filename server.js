@@ -13,18 +13,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('./')); 
 
-// 2. Setup the Email Transporter
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // Use SSL
+    secure: true, // Use SSL for port 465
     auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASS
     },
+    // This part is the "magic" for Render/IPv6 issues
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
     tls: {
-        rejectUnauthorized: false // This helps bypass some cloud network restrictions
+        rejectUnauthorized: false
     }
 });
 
